@@ -1,3 +1,8 @@
+
+export const metadata = {
+  title: "about us",
+  description: "Bangladesh news portal in Bangladesh",
+};
 const AboutUs = () => {
   return (
     <div>
