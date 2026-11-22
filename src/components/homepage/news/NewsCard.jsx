@@ -11,8 +11,8 @@ const NewsCard = ({ news }) => {
         <div className="flex justify-between items-center p-4 bg-slate-100">
           <div className="flex gap-1 items-center gap-3.5">
             <Image
-              src={news.author?.img}
-              alt={news.author?.name}
+              src={news.author?.img }
+              alt={news.author?.name || "Author"}
               height={40}
               width={40}
               className="rounded-full"
@@ -31,7 +31,7 @@ const NewsCard = ({ news }) => {
         <figure>
           <Image
             src={news.image_url}
-            alt={news.title}
+            alt={news.title || "News image"}
             width={300}
             height={300}
             className="w-full"

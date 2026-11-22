@@ -1,10 +1,15 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import AvatorUser from "@/assets/user.png";
 import NavLink from "./NavLink";
 import { Suspense } from "react";
+import { authClient } from "@/lib/auth-client";
 
 const Navbers = () => {
+  const { data: session } = authClient.useSession();
+  const user = session?.image;
+
   return (
     <div className="container mx-auto flex justify-between items-center mt-7">
       <div></div>
@@ -24,7 +29,13 @@ const Navbers = () => {
       </ul>
 
       <div className="flex justify-between items-center gap-3">
-        <Image src={AvatorUser} alt="user" width={60} height={60} />
+        <Image
+          src={session?.user?.image || AvatorUser}
+          alt="user"
+          width={60}
+          height={60}
+          className="rounded-full"
+        />
         <button className="btn bg-purple-500 text-white">
           <Link href="/login">Login</Link>
         </button>
