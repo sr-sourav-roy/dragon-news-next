@@ -5,7 +5,7 @@ import NewsCard from "../homepage/news/NewsCard";
 
 const NewsContent = async ({ params }) => {
   const { id } = await params;
-  console.log(id, "responsivedata");
+  // console.log(id, "responsivedata");
 
   const categoreis = await getCategories();
   const newsData = await getNewsByCategories(id);

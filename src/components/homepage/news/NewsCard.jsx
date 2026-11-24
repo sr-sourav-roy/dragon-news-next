@@ -3,7 +3,7 @@ import Link from "next/link";
 import { CiBookmark, CiShare2, CiStar } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
 const NewsCard = ({ news }) => {
-  console.log(news);
+  // console.log(news);
   return (
     <div className="card bg-base-100  shadow-sm">
       <div className="card-body">
@@ -11,7 +11,7 @@ const NewsCard = ({ news }) => {
         <div className="flex justify-between items-center p-4 bg-slate-100">
           <div className="flex gap-1 items-center gap-3.5">
             <Image
-              src={news.author?.img }
+              src={news.author?.img}
               alt={news.author?.name || "Author"}
               height={40}
               width={40}

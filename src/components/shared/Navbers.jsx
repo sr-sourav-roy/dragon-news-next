@@ -7,8 +7,9 @@ import { Suspense } from "react";
 import { authClient } from "@/lib/auth-client";
 
 const Navbers = () => {
-  const { data: session } = authClient.useSession();
-  const user = session?.image;
+  // session call the user id:-----------
+  const { data: session, isPending } = authClient.useSession();
+  const user = session?.user;
 
   return (
     <div className="container mx-auto flex justify-between items-center mt-7">
@@ -28,18 +29,27 @@ const Navbers = () => {
         </Suspense>
       </ul>
 
-      <div className="flex justify-between items-center gap-3">
-        <Image
-          src={session?.user?.image || AvatorUser}
-          alt="user"
-          width={60}
-          height={60}
-          className="rounded-full"
-        />
+      {isPending ? (
+        <span className="loading loading-ring loading-sm"></span>
+      ) : user ? (
+        <div className="flex justify-between items-center gap-3">
+          <h2 className="font-medium text-slate-500">
+            Hello Im <span className="font-semibold">{session?.user.name}</span>
+          </h2>
+          <Image
+            src={session?.user?.image || AvatorUser}
+            alt="user"
+            width={60}
+            height={60}
+            className="rounded-full"
+          />
+          <button className="btn  bg-purple-500 text-white" onClick={async () => await authClient.signOut()}>Logout</button>
+        </div>
+      ) : (
         <button className="btn bg-purple-500 text-white">
           <Link href="/login">Login</Link>
         </button>
-      </div>
+      )}   
     </div>
   );
 };
